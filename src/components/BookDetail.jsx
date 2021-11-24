@@ -1,6 +1,17 @@
 import { Component } from "react";
 import { Col, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import { connect } from 'react-redux'
+
+const mapStateToProps = state => ({})
+// both these two are ALWAYS functions returning a single object
+const mapDispatchToProps = (dispatch) => ({
+  addToCart: () => {
+    dispatch({
+      type: 'ADD_TO_CART'
+    })
+  }
+})
 
 class BookDetail extends Component {
   state = {
@@ -44,7 +55,7 @@ class BookDetail extends Component {
                   <span className="font-weight-bold">Price:</span>
                   {this.state.book.price}
                 </p>
-                <Button color="primary" onClick={() => {}}>
+                <Button color="primary" onClick={() => this.props.addToCart()}>
                   ADD TO CART
                 </Button>
               </Col>
@@ -62,4 +73,10 @@ class BookDetail extends Component {
   }
 }
 
-export default BookDetail;
+export default connect(mapStateToProps, mapDispatchToProps)(BookDetail);
+
+// in here I don't need to read anything from the state
+// my goal is to add an element to the cart, so I need to INTERACT with the state
+// so I'll need mapDispatchToProps
+// because it's the 2nd argument though, I cannot ignore the mapStateToProps,
+// I still have to write it for inserting mapDispatchToProps as the second one

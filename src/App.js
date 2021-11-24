@@ -9,17 +9,17 @@ const App = () => (
   <BrowserRouter>
     <Container>
       <Row>
-        <Col sm={12} className="text-center background-div">
-          <Link to="/">
+        <Col sm={12} className='text-center background-div'>
+          <Link to='/'>
             <h1>Strivazon Book Store</h1>
           </Link>
         </Col>
-        <CartIndicator />
+        <CartIndicator myOwnProp='Strive' />
       </Row>
       <hr />
       <Routes>
-        <Route path="/" element={<BookStore />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path='/' element={<BookStore />} />
+        <Route path='/cart' element={<Cart />} />
       </Routes>
     </Container>
   </BrowserRouter>
