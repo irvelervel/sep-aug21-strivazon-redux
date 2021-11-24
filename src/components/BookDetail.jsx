@@ -2,6 +2,7 @@ import { Component } from "react";
 import { Col, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { connect } from 'react-redux'
+import { addToCartAction } from "../actions";
 
 const mapStateToProps = (state) => ({
   // this is a dummy mapStateToProps, we're writing it just to be able to declare mapDispatchToProps
@@ -10,12 +11,7 @@ const mapStateToProps = (state) => ({
 // both these two are ALWAYS functions returning a single object
 const mapDispatchToProps = (dispatch) => ({
   addToCart: function (bookToAdd) {
-    dispatch({
-      type: 'ADD_TO_CART',
-      payload: bookToAdd // this is going to be the book we intend to add to the cart
-      // the payload is any other piece of info required by the reducer to understand
-      // what we want to do with this action
-    })
+    dispatch(addToCartAction(bookToAdd))
   }
 })
 
