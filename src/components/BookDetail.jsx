@@ -3,12 +3,18 @@ import { Col, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { connect } from 'react-redux'
 
-const mapStateToProps = state => ({})
+const mapStateToProps = (state) => ({
+  // this is a dummy mapStateToProps, we're writing it just to be able to declare mapDispatchToProps
+  // I'm not returning any key here because my component doesn't need to read anything from the state
+})
 // both these two are ALWAYS functions returning a single object
 const mapDispatchToProps = (dispatch) => ({
-  addToCart: () => {
+  addToCart: function (bookToAdd) {
     dispatch({
-      type: 'ADD_TO_CART'
+      type: 'ADD_TO_CART',
+      payload: bookToAdd // this is going to be the book we intend to add to the cart
+      // the payload is any other piece of info required by the reducer to understand
+      // what we want to do with this action
     })
   }
 })
@@ -55,7 +61,7 @@ class BookDetail extends Component {
                   <span className="font-weight-bold">Price:</span>
                   {this.state.book.price}
                 </p>
-                <Button color="primary" onClick={() => this.props.addToCart()}>
+                <Button color="primary" onClick={() => this.props.addToCart(this.state.book)}>
                   ADD TO CART
                 </Button>
               </Col>
@@ -80,3 +86,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(BookDetail);
 // so I'll need mapDispatchToProps
 // because it's the 2nd argument though, I cannot ignore the mapStateToProps,
 // I still have to write it for inserting mapDispatchToProps as the second one
+
+// const stefano = {
+//   age: 34,
+//   greets: function() {
+//     alert('hello')
+//   }
+// }
+
+// stefano.greets()
